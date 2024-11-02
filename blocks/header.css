@@ -1,0 +1,16 @@
+.header {
+  background-color: black;
+  color: white;
+  height: 74px;
+  margin-top: 45px;
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    padding: 28px 0 42px 0;
+    margin: 0;
+  }
+  .header__image {
+    padding-left: 7px;
+  }
+}
