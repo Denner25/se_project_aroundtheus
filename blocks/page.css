@@ -22,9 +22,4 @@
     width: 282px;
     margin: 0 auto;
   }
-
-  @media screen and (min-width: 770px) {
-    .profile{
-      margin: ;
-
-    }
+}
