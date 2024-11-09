@@ -30,8 +30,8 @@
   grid-area: title;
   margin: 0;
   white-space: nowrap;
-  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .profile__description {
@@ -59,10 +59,8 @@
 }
 
 .profile__edit-button:hover {
-  background: transparent url(../images/edit-button-hover.svg) center no-repeat;
-  border-color: gray;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .profile__add-button {
@@ -75,24 +73,25 @@
 }
 
 .profile__add-button:hover {
-  background: transparent url(../images/add-button-hover.svg) center no-repeat;
-  border-color: gray;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 620px) {
   .profile {
     flex-direction: column;
     padding: 0;
-    height: 286px;
+    min-height: 286px;
+  }
+
+  .profile__info {
+    max-width: 282px;
   }
 
   .profile__title {
     font-size: 22px;
     line-height: 1.2;
-    width: 196px;
-    height: 22px;
+    max-width: 196px;
     padding: 30px 0 14px 0;
   }
 

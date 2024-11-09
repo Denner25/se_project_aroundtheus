@@ -13,8 +13,8 @@
 }
 
 .cards__list-item {
-  width: 282px;
-  height: 361px;
+  max-width: 282px;
+  min-height: 361px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,13 +25,13 @@
   height: 282px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  object-fit: cover;
 }
 
 .cards__description {
   background-color: white;
   color: black;
-  width: 282px;
-  height: 79px;
+  width: 100%;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   display: flex;
@@ -49,6 +49,7 @@
   max-width: 219px;
   overflow: hidden;
   margin: 0;
+  padding: 25px 20px;
 }
 
 .cards__like-button {
@@ -60,10 +61,6 @@
 }
 
 .cards__like-button:hover {
-  background: url(../images/like-button-hover.svg);
-  width: 20px;
-  height: 18px;
-  border: none;
-  margin: 0;
+  opacity: 0.5;
   cursor: pointer;
 }
