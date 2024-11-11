@@ -2,16 +2,23 @@
   background-color: black;
   color: white;
   min-height: 74px;
-  margin-top: 45px;
+  margin: 45px auto 0 auto;
+  max-width: 880px;
+  position: relative;
+  padding: 0 20px;
   border-bottom: rgb(84 84 84 / 0.7) solid 1px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 480px) {
   .header {
-    padding: 28px 0 42px 0;
-    margin: 0;
+    padding: 28px 0 0 0;
+    margin: 0 auto;
+    max-width: 480px;
+    min-height: 56px;
   }
   .header__image {
-    padding-left: 7px;
+    max-width: 126px;
+    height: 24px;
+    padding-left: 27px;
   }
 }

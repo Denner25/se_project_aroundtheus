@@ -37,7 +37,7 @@
 }
 
 .cards__description-container {
-  padding: 0 20px 0 20px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -67,4 +67,10 @@
 .cards__like-button:hover {
   opacity: 0.5;
   cursor: pointer;
+}
+
+@media screen and (max-width: 620px) {
+  .cards {
+    padding-top: 36px;
+  }
 }
