@@ -1,0 +1,139 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  padding: 0 20px;
+  display: none;
+}
+
+.modal_opened {
+  display: flex;
+}
+
+.modal__container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  max-width: 430px;
+  min-height: 330px;
+  border-radius: 10px;
+  margin: auto;
+  padding: 36px;
+  position: relative;
+}
+
+.modal__close {
+  background: transparent url(../images/close-button.svg) no-repeat;
+  background-size: contain;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+}
+
+.modal__close:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.modal__heading {
+  font-family: "Inter";
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.21;
+  color: black;
+  max-width: 330px;
+  min-height: 23px;
+  margin: 0 0 54px 0;
+}
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter";
+  font-size: 14px;
+  max-width: 358px;
+}
+
+.modal__title {
+  max-width: 358px;
+  min-height: 27.3px;
+  margin-bottom: 30px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 0;
+}
+
+.modal__title::placeholder {
+  color: black;
+}
+
+.modal__description {
+  max-width: 358px;
+  min-height: 27.3px;
+  border: 1px solid;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 0;
+}
+
+.modal__description::placeholder {
+  color: black;
+}
+
+.modal__button {
+  max-width: 358px;
+  min-height: 50px;
+  border-radius: 2px;
+  border: none;
+  background-color: black;
+  color: white;
+  font-family: "Inter";
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 48px 0 0 0;
+  padding: 0;
+}
+
+.modal__button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 620px) {
+  .modal__container {
+    max-width: 282px;
+    min-height: 322px;
+    padding: 25px 22px;
+  }
+
+  .modal__close {
+    width: 28px;
+    height: 28px;
+    bottom: calc(100% + 20px);
+    left: calc(100% - 40px);
+  }
+
+  .modal__heading {
+    margin: 0 0 75px 0;
+  }
+
+  .modal__button {
+    margin-top: 45px;
+  }
+}
