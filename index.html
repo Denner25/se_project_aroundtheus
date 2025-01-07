@@ -40,86 +40,7 @@
           <button type="button" class="profile__add-button"></button>
         </section>
         <section class="cards page__section">
-          <ul class="cards__list">
-            <li class="cards__list-item">
-              <img
-                src="./images/yosemite.jpg"
-                alt="Yosemite Valley image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Yosemite Valley</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-            <li class="cards__list-item">
-              <img
-                src="./images/lake-louise.jpg"
-                alt="Lake Lousise image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Lake Louise</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-            <li class="cards__list-item">
-              <img
-                src="./images/bald-mountains.jpg"
-                alt="Bald Mountains image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Bald Mountains</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-            <li class="cards__list-item">
-              <img
-                src="./images/latemar.jpg"
-                alt="Latemar image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Latemar</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-            <li class="cards__list-item">
-              <img
-                src="./images/vanoise.jpg"
-                alt="Vanoise National Park image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Vanoise National Park</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-            <li class="cards__list-item">
-              <img
-                src="./images/lago.jpg"
-                alt="Lago di Braies image"
-                class="cards__image"
-              />
-              <div class="cards__description">
-                <div class="cards__description-container">
-                  <h2 class="cards__description-text">Lago di Braies</h2>
-                  <button type="button" class="cards__like-button"></button>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <ul class="cards__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
@@ -149,6 +70,19 @@
         </form>
       </div>
     </div>
+
+    <template id="card-template">
+      <li class="cards__list-item">
+        <img src="" alt="" class="cards__image" />
+        <div class="cards__description">
+          <div class="cards__description-container">
+            <h2 class="cards__description-text"></h2>
+            <button type="button" class="cards__like-button"></button>
+          </div>
+        </div>
+      </li>
+    </template>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>

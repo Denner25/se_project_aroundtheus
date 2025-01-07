@@ -43,6 +43,8 @@ function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
 
+// Event handlers
+
 // Event listeners
 
 profileEditButton.addEventListener("click", () => {
@@ -61,5 +63,3 @@ profileEditForm.addEventListener("submit", (e) => {
   profileDescription.textContent = profileDescriptionInput.value;
   closePopup();
 });
-
-// this is main
