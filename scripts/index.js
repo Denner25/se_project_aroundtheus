@@ -36,6 +36,8 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const profileEditForm = profileEditModal.querySelector(".modal__form");
+const cardTemplate =
+  document.querySelector("#card-template").content.firstElementChild;
 
 // Functions
 
@@ -63,3 +65,7 @@ profileEditButton.addEventListener("click", () => {
 profileEditCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
+
+for (let i = 0; initialCards.length; i++) {
+  console.log("hello" + i);
+}
