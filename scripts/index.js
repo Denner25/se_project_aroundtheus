@@ -38,12 +38,15 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector(".modal__form");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
+const cardListEl = document.querySelector(".cards__list");
 
 // Functions
 
 function closePopup() {
   profileEditModal.classList.remove("modal_opened");
 }
+
+function getCardEelement(data) {}
 
 // Event handlers
 
@@ -66,6 +69,21 @@ profileEditCloseButton.addEventListener("click", closePopup);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
-for (let i = 0; initialCards.length; i++) {
-  console.log("hello" + i);
-}
+initialCards.forEach((cardData) => {
+  // have not yet used cardData
+  // clone the template element with all its content and store it in a cardElement variable
+  const cardElement = cardTemplate.cloneNode(true);
+  // access the card title and image and store them in variables
+  const cardImageEl = cardElement.querySelector(".cards__image");
+  const cardTitleEl = cardElement.querySelector(".cards__description-text"); // mind class names
+  // set the path to the image to the link field of the object
+  cardImageEl.src = cardData.link;
+  // now using cardData
+  // set the image alt text to the name field of the object
+  cardImageEl.alt = cardData.name;
+  // set the card title to the name field of the object, too
+  cardTitleEl.textContent = cardData.name;
+  // return the ready HTML element with the filled-in data
+  // return cardElement;
+  cardListEl.append(cardElement);
+});
