@@ -21,6 +21,7 @@
   flex-direction: column;
   box-sizing: border-box;
   max-width: 430px;
+  width: 100%;
   min-height: 330px;
   border-radius: 10px;
   margin: auto;
@@ -105,6 +106,7 @@
 
 @media screen and (max-width: 620px) {
   .modal__container {
+    width: 100%;
     max-width: 282px;
     min-height: 322px;
     padding: 25px 22px;
