@@ -24,6 +24,7 @@ let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
 // Elements
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -35,7 +36,7 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = profileEditModal.querySelector(".modal__form");
+const profileEditForm = profileEditModal.querySelector("#edit-profile-form");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListEl = document.querySelector(".cards__list");
@@ -47,19 +48,12 @@ function closePopup() {
 }
 
 function getCardEelement(cardData) {
-  // clone the template element with all its content and store it in a cardElement variable
   const cardElement = cardTemplate.cloneNode(true);
-  // access the card title and image and store them in variables
   const cardImageEl = cardElement.querySelector(".cards__image");
   const cardTitleEl = cardElement.querySelector(".cards__description-text"); // mind class names
-  // set the path to the image to the link field of the object
   cardImageEl.src = cardData.link;
-  // now using cardData
-  // set the image alt text to the name field of the object
   cardImageEl.alt = cardData.name;
-  // set the card title to the name field of the object, too
   cardTitleEl.textContent = cardData.name;
-  // return the ready HTML element with the filled-in data
   return cardElement;
 }
 
@@ -85,7 +79,6 @@ profileEditCloseButton.addEventListener("click", closePopup);
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 initialCards.forEach((cardData) => {
-  // have not yet used cardData
   const cardElement = getCardEelement(cardData);
   cardListEl.append(cardElement);
 });
