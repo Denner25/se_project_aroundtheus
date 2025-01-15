@@ -40,6 +40,8 @@ const profileEditForm = profileEditModal.querySelector("#edit-profile-form");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListEl = document.querySelector(".cards__list");
+const profileAddCardButton = document.querySelector("#profile-add-card-button");
+const profileAddCardModal = document.querySelector("#profile-add-card-modal");
 
 // Functions
 
@@ -72,6 +74,10 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   profileEditModal.classList.add("modal_opened");
+});
+
+profileAddCardButton.addEventListener("click", () => {
+  profileAddCardModal.classList.add("modal_opeme");
 });
 
 profileEditCloseButton.addEventListener("click", closePopup);
