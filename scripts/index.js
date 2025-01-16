@@ -40,8 +40,8 @@ const profileEditForm = profileEditModal.querySelector("#edit-profile-form");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListEl = document.querySelector(".cards__list");
-const profileAddCardButton = document.querySelector("#profile-add-card-button");
-const profileAddCardModal = document.querySelector("#profile-add-card-modal");
+const profileAddCardButton = document.querySelector("#add-card-button");
+const profileAddCardModal = document.querySelector("#add-card-modal");
 
 // Functions
 
