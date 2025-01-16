@@ -85,14 +85,10 @@ function handleAddCardSubmit(e) {
   e.preventDefault();
   const title = cardTitleInput.value;
   const link = cardUrlInput.value;
-  const cardElement = getCardEelement({
-    title,
-    link,
-  });
+  renderCard({ title, link }, cardListEl);
   // this will be replaced by renderCard function with cardData and cardListEl as arguments
   // cardElement does not need to be repeated as it was already referenced inside of renderCard function
 
-  cardListEl.prepend(cardElement);
   closeModal(addCardModal);
 }
 
