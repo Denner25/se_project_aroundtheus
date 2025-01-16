@@ -67,9 +67,9 @@ function getCardEelement(cardData) {
   return cardElement;
 }
 
-function renderCard(cardData) {
+function renderCard(cardData, listEl) {
   const cardElement = getCardEelement(cardData);
-  cardListEl.prepend(cardElement);
+  listEl.prepend(cardElement);
 } // new function to be used in the loop
 
 // Event handlers
@@ -88,8 +88,11 @@ function handleAddCardSubmit(e) {
   const cardElement = getCardEelement({
     title,
     link,
-  }); // review addition of this object
-  console.log(cardElement);
+  });
+  // this will be replaced by renderCard function with cardData and cardListEl as arguments
+  // cardElement does not need to be repeated as it was already referenced inside of renderCard function
+
+  cardListEl.prepend(cardElement);
   closeModal(addCardModal);
 }
 
@@ -112,7 +115,5 @@ addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((cardData) => {
-  const cardElement = getCardEelement(cardData);
-  cardListEl.append(cardElement); // will replace with renderCard function
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+// passed arguments of cardData meaning what and cardListEl meaning where
