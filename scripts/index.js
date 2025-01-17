@@ -61,6 +61,20 @@ function getCardEelement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".cards__image");
   const cardTitleEl = cardElement.querySelector(".cards__description-text"); // mind class names
+  const likeButton = cardElement.querySelector(".cards__like-button");
+
+  // find delete button
+
+  // add event listener to delete button
+  // cardElement.remove()
+
+  // add click listener to cardImage element
+  // previewImageModal with openModal
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("cards__like-button_active");
+  });
+
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.title;
   cardTitleEl.textContent = cardData.title;
@@ -113,16 +127,3 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 // passed arguments of cardData meaning what and cardListEl meaning where
-
-const likeButtons = document.querySelectorAll(".cards__like-button");
-// declared likeButtons element away from other consts and after renderCard because they're
-// no longer hard coded and only exist after renderCard renders cards
-
-likeButtons.forEach((likeButton) => {
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("cards__like-button_active");
-  });
-});
-// because the code only searches for buttons at the moment of page load and not after, likes do not
-// apply to newly added cards, so this piece of code will be relocated to getCardElement function in order
-// to find the like button inside each card that's about to be generated
