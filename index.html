@@ -43,8 +43,8 @@
             id="add-card-button"
           ></button>
         </section>
-        <section class="cards page__section">
-          <ul class="cards__list"></ul>
+        <section class="card page__section">
+          <ul class="card__list"></ul>
         </section>
       </main>
       <footer class="footer page__section">
@@ -103,12 +103,15 @@
     </div>
 
     <template id="card-template">
-      <li class="cards__list-item">
-        <img src="" alt="" class="cards__image" />
-        <div class="cards__description">
-          <div class="cards__description-container">
-            <h2 class="cards__description-text"></h2>
-            <button type="button" class="cards__like-button"></button>
+      <li class="card__list-item">
+        <div class="card__image-container">
+          <button type="button" class="card__delete-button"></button>
+          <img src="" alt="" class="card__image" />
+        </div>
+        <div class="card__description">
+          <div class="card__description-container">
+            <h2 class="card__description-text"></h2>
+            <button type="button" class="card__like-button"></button>
           </div>
         </div>
       </li>

@@ -40,7 +40,7 @@ const profileDescriptionInput = document.querySelector(
 const profileEditForm = profileEditModal.querySelector("#edit-profile-form");
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
-const cardListEl = document.querySelector(".cards__list");
+const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = document.querySelector("#add-card-form");
@@ -59,20 +59,20 @@ function openModal(modal) {
 
 function getCardEelement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".cards__image");
-  const cardTitleEl = cardElement.querySelector(".cards__description-text"); // mind class names
-  const likeButton = cardElement.querySelector(".cards__like-button");
-
-  // find delete button
-
-  // add event listener to delete button
-  // cardElement.remove()
+  const cardImageEl = cardElement.querySelector(".card__image");
+  const cardTitleEl = cardElement.querySelector(".card__description-text"); // mind class names
+  const likeButton = cardElement.querySelector(".card__like-button");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
   // add click listener to cardImage element
   // previewImageModal with openModal
 
   likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("cards__like-button_active");
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  deleteButton.addEventListener("click", () => {
+    cardElement.remove();
   });
 
   cardImageEl.src = cardData.link;
@@ -100,9 +100,6 @@ function handleAddCardSubmit(e) {
   const title = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ title, link }, cardListEl);
-  // this will be replaced by renderCard function with cardData and cardListEl as arguments
-  // cardElement does not need to be repeated as it was already referenced inside of renderCard function
-
   closeModal(addCardModal);
 }
 
