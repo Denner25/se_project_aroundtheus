@@ -113,3 +113,16 @@ addCardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 // passed arguments of cardData meaning what and cardListEl meaning where
+
+const likeButtons = document.querySelectorAll(".cards__like-button");
+// declared likeButtons element away from other consts and after renderCard because they're
+// no longer hard coded and only exist after renderCard renders cards
+
+likeButtons.forEach((likeButton) => {
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("cards__like-button_active");
+  });
+});
+// because the code only searches for buttons at the moment of page load and not after, likes do not
+// apply to newly added cards, so this piece of code will be relocated to getCardElement function in order
+// to find the like button inside each card that's about to be generated
