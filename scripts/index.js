@@ -29,7 +29,9 @@ let initialCards = [
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditCloseButton = document.querySelector("#modal-close-button");
+const profileEditCloseButton = document.querySelector(
+  "#profile-edit-close-button"
+);
 const addCardCloseButton = document.querySelector("#add-card-close-button"); // not yet used
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
@@ -46,6 +48,14 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardForm = document.querySelector("#add-card-form");
 const cardTitleInput = document.querySelector("#card-title-input");
 const cardUrlInput = document.querySelector("#card-url-input");
+const previewImageModal = document.querySelector("#preview-image-modal");
+const previewImage = previewImageModal.querySelector(".modal__preview-image");
+// to get image to preview grab image element itself, not just the preview modal
+
+const previewCaption = previewImageModal.querySelector(
+  ".modal__preview-caption"
+);
+const previewCloseButton = previewImageModal.querySelector(".modal__close");
 
 // Functions
 
@@ -64,9 +74,6 @@ function getCardEelement(cardData) {
   const likeButton = cardElement.querySelector(".card__like-button");
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  // add click listener to cardImage element
-  // previewImageModal with openModal
-
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
@@ -74,6 +81,15 @@ function getCardEelement(cardData) {
   deleteButton.addEventListener("click", () => {
     cardElement.remove();
   });
+
+  cardImageEl.addEventListener("click", () => {
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.title;
+    previewCaption.textContent = cardData.title;
+    openModal(previewImageModal);
+  });
+
+  // listen for click on image element not on card element
 
   cardImageEl.src = cardData.link;
   cardImageEl.alt = cardData.title;
@@ -118,6 +134,10 @@ profileEditCloseButton.addEventListener("click", () =>
 );
 
 addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
+
+previewCloseButton.addEventListener("click", () =>
+  closeModal(previewImageModal)
+);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 addCardForm.addEventListener("submit", handleAddCardSubmit);
