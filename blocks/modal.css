@@ -8,11 +8,14 @@
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   padding: 0 20px;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s linear;
 }
 
 .modal_opened {
-  display: flex;
+  visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
