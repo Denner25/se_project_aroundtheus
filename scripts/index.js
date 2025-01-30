@@ -94,12 +94,29 @@ function renderCard(cardData, listEl) {
   listEl.prepend(cardElement);
 } // new function to be used in the loop
 
+function closeModalOnEsc(evt) {
+  if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
+    closeModal(modal);
+  }
+}
+
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", closeModalOnEsc);
+  modal.removeEventListener("click", closeModalOnOverlay);
 }
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  document.addEventListener("keydown", closeModalOnEsc);
+  modal.addEventListener("click", closeModalOnOverlay);
+}
+
+function closeModalOnOverlay(evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(evt.target);
+  }
 }
 
 // Event handlers
