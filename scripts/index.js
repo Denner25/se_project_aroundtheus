@@ -1,4 +1,4 @@
-let initialCards = [
+const initialCards = [
   {
     title: "Yosemite Valley",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
@@ -39,7 +39,7 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const profileEditForm = document.querySelector("#edit-profile-form");
+const profileEditForm = document.forms["edit-profile-form"];
 const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const cardListEl = document.querySelector(".card__list");
@@ -56,7 +56,8 @@ const previewCaption = previewImageModal.querySelector(
   ".modal__preview-caption"
 );
 const previewCloseButton = previewImageModal.querySelector(".modal__close");
-const saveButton = addCardModal.querySelector(".modal__button");
+const saveCardButton = addCardModal.querySelector(".modal__button");
+const closeButtons = document.querySelectorAll(".modal__close");
 
 // Functions
 
@@ -140,11 +141,11 @@ function handleAddCardSubmit(e) {
 
 function toggleAddCardButton() {
   if (cardTitleInput.validity.valid && cardUrlInput.validity.valid) {
-    saveButton.disabled = false;
-    saveButton.classList.remove("modal__button_disabled");
+    saveCardButton.disabled = false;
+    saveCardButton.classList.remove("modal__button_disabled");
   } else {
-    saveButton.disabled = true;
-    saveButton.classList.add("modal__button_disabled");
+    saveCardButton.disabled = true;
+    saveCardButton.classList.add("modal__button_disabled");
   }
 }
 
@@ -157,23 +158,21 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
-  toggleAddCardButton(saveButton);
+  toggleAddCardButton(saveCardButton);
   openModal(addCardModal);
 });
-
-profileEditCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
-);
-
-addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
-
-previewCloseButton.addEventListener("click", () =>
-  closeModal(previewImageModal)
-);
 
 profileEditForm.addEventListener("submit", handleProfileEditSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardSubmit);
+
+closeButtons.forEach((button) => {
+  const modal = button.closest(".modal");
+  // button "any",  modal "any"
+
+  button.addEventListener("click", () => closeModal(modal));
+});
+// replaced repeated close button evenet listeners with single looped one
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 // passed arguments of cardData meaning what and cardListEl meaning where
