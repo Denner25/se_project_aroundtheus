@@ -1,6 +1,7 @@
 # Around The U.S
 
-This is the fourth project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery.
+This is the sixth project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. Form validation
+was added using the skills learned in this sprint.
 
 ## Project features
 

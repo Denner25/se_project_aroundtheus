@@ -62,18 +62,7 @@ function enableValidation(options) {
     formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
-
     setEventListeners(formEl, options);
-    // look for all inputs inside of form
-    // loop through inputs to see if all are valid
-    // if input is not valid
-    // get validation message
-    // add error class to input
-    // display error message
-    // disable button
-    // if inputs valid
-    // enable button
-    // hide error
   });
 }
 
