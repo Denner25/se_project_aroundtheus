@@ -1,3 +1,7 @@
+import Card from "./card.js";
+import FormValidator from "./formValidator.js";
+// import FormValidator from "./FormValidator.js";
+
 const initialCards = [
   {
     title: "Yosemite Valley",
@@ -24,6 +28,13 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
+const data = {
+  title: "Yosemite Valley",
+  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
+};
+
+// card.getView();
 
 // Elements
 
@@ -59,9 +70,32 @@ const previewCloseButton = previewImageModal.querySelector(".modal__close");
 const saveCardButton = addCardModal.querySelector(".modal__button");
 const closeButtons = document.querySelectorAll(".modal__close");
 
+// const cardSelector = "#card-template"; cardTemplate?
+
+// Validation
+const validationSettings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: "modal__button_disabled",
+  inputErrorClass: "modal__input_error",
+  errorClass: "modal__error_visible",
+};
+
+const editFormElement = profileEditModal.querySelector(".modal__form");
+const addFormElement = addCardModal.querySelector(".modal__form");
+
+const editFormValidator = new FormValidator(
+  validationSettings,
+  editFormElement
+);
+const addFormValidator = new FormValidator(validationSettings, addFormElement);
+
+// editFormValidator.enableValidation();
+// addFormValidator.enableValidation();
+
 // Functions
 
-function getCardEelement(cardData) {
+function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__description-text"); // mind class names
@@ -92,8 +126,9 @@ function getCardEelement(cardData) {
 }
 
 function renderCard(cardData, listEl) {
-  const cardElement = getCardEelement(cardData);
-  listEl.prepend(cardElement);
+  const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, cardTemplate);
+  listEl.prepend(cardElement); // card.getView()
 } // new function to be used in the loop
 
 function closeModalOnEsc(evt) {
