@@ -1,6 +1,5 @@
 import Card from "./card.js";
-import FormValidator from "./formValidator.js";
-// import FormValidator from "./FormValidator.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -90,8 +89,8 @@ const editFormValidator = new FormValidator(
 );
 const addFormValidator = new FormValidator(validationSettings, addFormElement);
 
-// editFormValidator.enableValidation();
-// addFormValidator.enableValidation();
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
 
 // Functions
 
