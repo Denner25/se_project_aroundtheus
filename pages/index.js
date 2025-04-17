@@ -1,5 +1,5 @@
-import Card from "./card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -94,40 +94,47 @@ addFormValidator.enableValidation();
 
 // Functions
 
-function getCardElement(cardData) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImageEl = cardElement.querySelector(".card__image");
-  const cardTitleEl = cardElement.querySelector(".card__description-text"); // mind class names
-  const likeButton = cardElement.querySelector(".card__like-button");
-  const deleteButton = cardElement.querySelector(".card__delete-button");
+// function getCardElement(cardData) {
+//   const cardElement = cardTemplate.cloneNode(true);
+//   const cardImageEl = cardElement.querySelector(".card__image");
+//   const cardTitleEl = cardElement.querySelector(".card__description-text"); // mind class names
+//   const likeButton = cardElement.querySelector(".card__like-button");
+//   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
+//   likeButton.addEventListener("click", () => {
+//     likeButton.classList.toggle("card__like-button_active");
+//   });
 
-  deleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
+//   deleteButton.addEventListener("click", () => {
+//     cardElement.remove();
+//   });
 
-  cardImageEl.addEventListener("click", () => {
-    previewImage.src = cardData.link;
-    previewImage.alt = cardData.title;
-    previewCaption.textContent = cardData.title;
-    openModal(previewImageModal);
-  });
+//   cardImageEl.addEventListener("click", () => {
+//     previewImage.src = cardData.link;
+//     previewImage.alt = cardData.title;
+//     previewCaption.textContent = cardData.title;
+//     openModal(previewImageModal);
+//   });
 
-  // listen for click on image element not on card element
+//   // listen for click on image element not on card element
 
-  cardImageEl.src = cardData.link;
-  cardImageEl.alt = cardData.title;
-  cardTitleEl.textContent = cardData.title;
-  return cardElement;
+//   cardImageEl.src = cardData.link;
+//   cardImageEl.alt = cardData.title;
+//   cardTitleEl.textContent = cardData.title;
+//   return cardElement;
+// }
+
+function handleImageClick(cardData) {
+  previewImage.src = cardData.link;
+  previewImage.alt = cardData.title;
+  previewCaption.textContent = cardData.title;
+  openModal(previewImageModal);
 }
 
 function renderCard(cardData, listEl) {
-  const cardElement = getCardElement(cardData);
-  const card = new Card(cardData, cardTemplate);
-  listEl.prepend(cardElement); // card.getView()
+  // const cardElement = getCardElement(cardData);
+  const card = new Card(cardData, "#card-template", handleImageClick);
+  listEl.prepend(card.getView()); // card.getView()
 } // new function to be used in the loop
 
 function closeModalOnEsc(evt) {
@@ -162,6 +169,8 @@ function handleProfileEditSubmit(e) {
   profileTitle.textContent = profileTitleInput.value;
   profileDescription.textContent = profileDescriptionInput.value;
   closeModal(profileEditModal);
+  e.target.reset();
+  editFormValidator.resetValidation();
 }
 
 function handleAddCardSubmit(e) {
@@ -171,17 +180,18 @@ function handleAddCardSubmit(e) {
   renderCard({ title, link }, cardListEl);
   closeModal(addCardModal);
   e.target.reset();
+  addFormValidator.resetValidation();
 }
 
-function toggleAddCardButton() {
-  if (cardTitleInput.validity.valid && cardUrlInput.validity.valid) {
-    saveCardButton.disabled = false;
-    saveCardButton.classList.remove("modal__button_disabled");
-  } else {
-    saveCardButton.disabled = true;
-    saveCardButton.classList.add("modal__button_disabled");
-  }
-}
+// function toggleAddCardButton() {
+//   if (cardTitleInput.validity.valid && cardUrlInput.validity.valid) {
+//     saveCardButton.disabled = false;
+//     saveCardButton.classList.remove("modal__button_disabled");
+//   } else {
+//     saveCardButton.disabled = true;
+//     saveCardButton.classList.add("modal__button_disabled");
+//   }
+// }
 
 // Event listeners
 
@@ -192,7 +202,7 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
-  toggleAddCardButton(saveCardButton);
+  // toggleAddCardButton(saveCardButton);
   openModal(addCardModal);
 });
 
