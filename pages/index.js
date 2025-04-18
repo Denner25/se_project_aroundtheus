@@ -28,21 +28,10 @@ const initialCards = [
   },
 ];
 
-const data = {
-  title: "Yosemite Valley",
-  link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-};
-
-// card.getView();
-
 // Elements
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditModal = document.querySelector("#profile-edit-modal");
-const profileEditCloseButton = document.querySelector(
-  "#profile-edit-close-button"
-);
-const addCardCloseButton = document.querySelector("#add-card-close-button"); // not yet used
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
@@ -50,8 +39,7 @@ const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
 const profileEditForm = document.forms["edit-profile-form"];
-const cardTemplate =
-  document.querySelector("#card-template").content.firstElementChild;
+const cardTemplate = document.querySelector(".card__template");
 const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -60,22 +48,16 @@ const cardTitleInput = document.querySelector("#card-title-input");
 const cardUrlInput = document.querySelector("#card-url-input");
 const previewImageModal = document.querySelector("#preview-image-modal");
 const previewImage = previewImageModal.querySelector(".modal__preview-image");
-// to get image to preview grab image element itself, not just the preview modal
-
 const previewCaption = previewImageModal.querySelector(
   ".modal__preview-caption"
 );
-const previewCloseButton = previewImageModal.querySelector(".modal__close");
-const saveCardButton = addCardModal.querySelector(".modal__button");
 const closeButtons = document.querySelectorAll(".modal__close");
-
-// const cardSelector = "#card-template"; cardTemplate?
 
 // Validation
 const validationSettings = {
   inputSelector: ".modal__input",
-  submitButtonSelector: ".modal__button",
-  inactiveButtonClass: "modal__button_disabled",
+  submitButtonSelector: ".modal__submit",
+  inactiveButtonClass: "modal__submit_disabled",
   inputErrorClass: "modal__input_error",
   errorClass: "modal__error_visible",
 };
@@ -94,36 +76,6 @@ addFormValidator.enableValidation();
 
 // Functions
 
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector(".card__image");
-//   const cardTitleEl = cardElement.querySelector(".card__description-text"); // mind class names
-//   const likeButton = cardElement.querySelector(".card__like-button");
-//   const deleteButton = cardElement.querySelector(".card__delete-button");
-
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   deleteButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-//   cardImageEl.addEventListener("click", () => {
-//     previewImage.src = cardData.link;
-//     previewImage.alt = cardData.title;
-//     previewCaption.textContent = cardData.title;
-//     openModal(previewImageModal);
-//   });
-
-//   // listen for click on image element not on card element
-
-//   cardImageEl.src = cardData.link;
-//   cardImageEl.alt = cardData.title;
-//   cardTitleEl.textContent = cardData.title;
-//   return cardElement;
-// }
-
 function handleImageClick(cardData) {
   previewImage.src = cardData.link;
   previewImage.alt = cardData.title;
@@ -132,10 +84,9 @@ function handleImageClick(cardData) {
 }
 
 function renderCard(cardData, listEl) {
-  // const cardElement = getCardElement(cardData);
-  const card = new Card(cardData, "#card-template", handleImageClick);
-  listEl.prepend(card.getView()); // card.getView()
-} // new function to be used in the loop
+  const card = new Card(cardData, cardTemplate, handleImageClick);
+  listEl.prepend(card.getView());
+}
 
 function closeModalOnEsc(evt) {
   if (evt.key === "Escape") {
@@ -183,16 +134,6 @@ function handleAddCardSubmit(e) {
   addFormValidator.resetValidation();
 }
 
-// function toggleAddCardButton() {
-//   if (cardTitleInput.validity.valid && cardUrlInput.validity.valid) {
-//     saveCardButton.disabled = false;
-//     saveCardButton.classList.remove("modal__button_disabled");
-//   } else {
-//     saveCardButton.disabled = true;
-//     saveCardButton.classList.add("modal__button_disabled");
-//   }
-// }
-
 // Event listeners
 
 profileEditButton.addEventListener("click", () => {
@@ -202,7 +143,6 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
-  // toggleAddCardButton(saveCardButton);
   openModal(addCardModal);
 });
 
@@ -219,4 +159,3 @@ closeButtons.forEach((button) => {
 // replaced repeated close button evenet listeners with single looped one
 
 initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
-// passed arguments of cardData meaning what and cardListEl meaning where

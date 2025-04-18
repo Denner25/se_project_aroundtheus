@@ -1,7 +1,6 @@
 # Around The U.S
 
-This is the sixth project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. Form validation
-was added using the skills learned in this sprint.
+This is the seventh project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. FormValidator and Card JavaScript classes were implemented using object-oriented programming concepts learned in this sprint.
 
 ## Project features
 
@@ -12,6 +11,7 @@ was added using the skills learned in this sprint.
 - Flexbox
 - Flat BEM file structure
 - JavaScript
+- Object Oriented Programming
 
 ## Plan on improving the project
 

@@ -32,9 +32,8 @@ export default class Card {
   }
 
   _getTemplate() {
-    return document
-      .querySelector(this._cardSelector)
-      .content.querySelector(".card__list-item")
+    return this._cardSelector.content
+      .querySelector(".card__list-item")
       .cloneNode(true);
   }
 
