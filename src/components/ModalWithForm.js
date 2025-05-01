@@ -3,19 +3,36 @@ import Modal from "./Modal.js";
 class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super({ modalSelector });
-    this._modalForm = this._modalElement.querySelector(".modal__form");
+    this._formModal = this._modalElement.querySelector(".modal__form");
+    this._inputs = this._formModal.querySelectorAll(".modal__input");
     this._handleFormSubmit = handleFormSubmit;
   }
 
+  _getInputValues() {
+    const inputs = {};
+    this._inputs.forEach((input) => {
+      //the brackets are just used to create a new
+      //key value pair inside the empty object
+      //nothing connected to arrays like i initially thought
+      inputs[input.name] = input.value;
+    });
+    return inputs;
+  }
+
+  setEventListeners() {
+    super.setEventListeners();
+    this._formModal.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const inputs = this._getInputValues();
+      this._handleFormSubmit(e, inputs);
+      this.close();
+    });
+  }
+
   close() {
-    this._modalForm.reset();
     super.close();
+    this._formModal.reset();
   }
 }
 
-// index.js
-
-const newCardModal = ModalWithForm("#add-card-modal", () => {});
-newCardModal.open();
-
-newCardModal.close();
+export default ModalWithForm;
