@@ -7,15 +7,12 @@ export default class Card {
   }
 
   _setEventListeners() {
-    //".card__like-button"
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
     });
-    //".card__delete-button"
     this._deleteButton.addEventListener("click", () => {
       this._handleDeleteCard();
     });
-    // preview image
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({ title: this._title, link: this._link });
     });

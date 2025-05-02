@@ -2,7 +2,6 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "./index.css";
 import { initialCards, validationSettings } from "../utils/constants.js";
-// import Modal from "../components/Modal.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -22,8 +21,6 @@ const cardTemplate = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardForm = document.querySelector("#add-card-form");
-// const cardTitleInput = document.querySelector("#card-title-input");
-// const cardUrlInput = document.querySelector("#card-url-input");
 
 // Class Instances
 
@@ -83,15 +80,7 @@ function handleProfileEditSubmit(inputValues) {
 }
 
 function handleAddCardSubmit(inputValues) {
-  // const title = cardTitleInput.value;
-  // const link = cardUrlInput.value;
-  // able to replace title and link values with
-  // destructured object because In ModalWithForm.js the _getInputValues() method
-  // collects ALL input values from any form into an object, where:
-  // The key is the input's name attribute
-  // The value is the input's current value
   const { title, link } = inputValues;
-  // renderCard({ title, link }, cardListEl);
   section.addItem({ title, link });
   addCardModal.close();
 }
@@ -111,5 +100,4 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
 section.renderItems();

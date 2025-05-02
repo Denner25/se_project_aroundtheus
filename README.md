@@ -1,6 +1,6 @@
 # Around The U.S
 
-This is the seventh project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. FormValidator and Card JavaScript classes were implemented using object-oriented programming concepts learned in this sprint.
+This is the eighth project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. Section, Modal, ModalWithForm, ModalWithImage and UserInfo classes were implemented using advanced object-oriented programming concepts learned in this sprint.
 
 ## Project features
 
@@ -16,7 +16,7 @@ This is the seventh project of the Software Engineering program at TripleTen. It
 ## Plan on improving the project
 
 - To add smooth transitions to the add button's border size at the different breakpoints using the transform scale property.
-- To add more interactivity upon acquiring the new JavaScript skills from the next sprint.
+- To add more interactivity and expand user features upon acquiring the new JavaScript skills from the next sprint.
 
 ## GitHub Pages
 
