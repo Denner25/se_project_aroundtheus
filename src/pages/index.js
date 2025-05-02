@@ -2,9 +2,11 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "./index.css";
 import { initialCards, validationSettings } from "../utils/constants.js";
-import Modal from "../components/Modal.js";
+// import Modal from "../components/Modal.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
 
 // Elements
 
@@ -16,12 +18,12 @@ const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
-const cardTemplate = document.querySelector(".card__template");
+const cardTemplate = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardForm = document.querySelector("#add-card-form");
-const cardTitleInput = document.querySelector("#card-title-input");
-const cardUrlInput = document.querySelector("#card-url-input");
+// const cardTitleInput = document.querySelector("#card-title-input");
+// const cardUrlInput = document.querySelector("#card-url-input");
 
 // Class Instances
 
@@ -46,6 +48,13 @@ profileModal.setEventListeners();
 addCardModal.setEventListeners();
 imageModal.setEventListeners();
 
+const userInfo = new UserInfo(profileTitle, profileDescription);
+
+const section = new Section(
+  { items: initialCards, renderer: renderCard },
+  cardListEl
+);
+
 // Functions
 
 function handleImageClick(cardData) {
@@ -67,29 +76,33 @@ function renderCard(cardData, listEl) {
 
 // Event handlers
 
-function handleProfileEditSubmit(e) {
-  e.preventDefault();
-  profileTitle.textContent = profileTitleInput.value;
-  profileDescription.textContent = profileDescriptionInput.value;
+function handleProfileEditSubmit(inputValues) {
+  const { title, description } = inputValues;
+  userInfo.setUserInfo(title, description);
   profileModal.close();
-  e.target.reset();
 }
 
-function handleAddCardSubmit(e) {
-  e.preventDefault();
-  const title = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ title, link }, cardListEl);
+function handleAddCardSubmit(inputValues) {
+  // const title = cardTitleInput.value;
+  // const link = cardUrlInput.value;
+  // able to replace title and link values with
+  // destructured object because In ModalWithForm.js the _getInputValues() method
+  // collects ALL input values from any form into an object, where:
+  // The key is the input's name attribute
+  // The value is the input's current value
+  const { title, link } = inputValues;
+  // renderCard({ title, link }, cardListEl);
+  section.addItem({ title, link });
   addCardModal.close();
-  e.target.reset();
 }
 
 // Event listeners
 
 profileEditButton.addEventListener("click", () => {
   editFormValidator.resetValidation();
-  profileTitleInput.value = profileTitle.textContent;
-  profileDescriptionInput.value = profileDescription.textContent;
+  const { profileTitle, profileDescription } = userInfo.getUserInfo();
+  profileTitleInput.value = profileTitle;
+  profileDescriptionInput.value = profileDescription;
   profileModal.open();
 });
 
@@ -98,8 +111,5 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-// profileEditForm.addEventListener("submit", handleProfileEditSubmit);
-
-// addCardForm.addEventListener("submit", handleAddCardSubmit);
-
-initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+// initialCards.forEach((cardData) => renderCard(cardData, cardListEl));
+section.renderItems();
