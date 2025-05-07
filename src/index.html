@@ -54,7 +54,7 @@
     <!-- Edit modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close" id="profile-edit-close-button"></button>
+        <button class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form" id="edit-profile-form" novalidate>
           <label class="modal__label">
@@ -94,7 +94,7 @@
     <!-- Add card modal -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close" id="add-card-close-button"></button>
+        <button class="modal__close"></button>
         <p class="modal__heading">New place</p>
         <form class="modal__form" id="add-card-form">
           <label class="modal__label">
@@ -132,6 +132,37 @@
         <button class="modal__close"></button>
         <img src="" alt="" class="modal__preview-image" />
         <p class="modal__preview-caption"></p>
+      </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div class="modal" id="confirmation-modal">
+      <div class="modal__confirmation">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <button class="modal__submit">Yes</button>
+      </div>
+    </div>
+
+    <!-- Change profile picture modal -->
+    <div class="modal" id="profile-pic-modal">
+      <div class="modal__container">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="profile-pic-form">
+          <label class="modal__label">
+            <input
+              type="url"
+              name="avatar"
+              class="modal__input"
+              id="profile-pic-input"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="profile-pic-input-error"></span>
+          </label>
+          <button class="modal__submit">Save</button>
+        </form>
       </div>
     </div>
 

@@ -129,6 +129,10 @@
   padding: 0;
 }
 
+.modal__submit_saving {
+  content: "Saving...";
+}
+
 .modal__submit:hover {
   cursor: pointer;
   opacity: 0.6;
