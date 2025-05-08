@@ -53,7 +53,26 @@ const section = new Section(
   cardListEl
 );
 
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "68ee5cc1-9a6e-42ad-87e2-f7856d8c88ba",
+    "Content-Type": "application/json",
+  },
+});
+
 // Functions
+
+function loadInitialCards() {
+  api
+    .getInitialCards()
+    .then((cards) => {
+      section.renderItems(cards);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 
 function handleImageClick(cardData) {
   imageModal.open({
@@ -74,16 +93,42 @@ function renderCard(cardData, listEl) {
 
 // Event handlers
 
+// function handleProfileEditSubmit(inputValues) {
+//   const { title, description } = inputValues;
+//   userInfo.setUserInfo(title, description);
+//   profileModal.close();
+// }
+
 function handleProfileEditSubmit(inputValues) {
   const { title, description } = inputValues;
-  userInfo.setUserInfo(title, description);
-  profileModal.close();
+  api
+    .updateProfile({ name: title, about: description })
+    .then((res) => {
+      userInfo.setUserInfo(res.name, res.about);
+      profileModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
+
+// function handleAddCardSubmit(inputValues) {
+//   const { title, link } = inputValues;
+//   section.addItem({ title, link });
+//   addCardModal.close();
+// }
 
 function handleAddCardSubmit(inputValues) {
   const { title, link } = inputValues;
-  section.addItem({ title, link });
-  addCardModal.close();
+  api
+    .addItem({ title, link })
+    .then((res) => {
+      section.addItem(res);
+      addCardModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 }
 
 // Event listeners
@@ -101,4 +146,5 @@ addCardButton.addEventListener("click", () => {
   addCardModal.open();
 });
 
-section.renderItems();
+// section.renderItems();
+loadInitialCards();

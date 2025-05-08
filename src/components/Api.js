@@ -5,17 +5,26 @@ export default class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, {
-      headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    return (
+      fetch(`${this.baseUrl}/cards`, {
+        headers: this.headers,
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        })
+        // extra .then to keep using title and not change everywhere to name
+        .then((data) => {
+          return data.map((item) => ({
+            title: item.name,
+            link: item.link,
+            ...item,
+          }));
+        })
+    );
   }
-
-  // other methods for working with the API
 
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
@@ -28,15 +37,13 @@ export default class Api {
     });
   }
 
-  updateProfile() {}
-
-  addCard({ title, link }) {
-    return fetch(`${this.baseUrl}/cards`, {
+  updateProfile({ name, about }) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
       headers: this.headers,
-      method: "POST",
       body: JSON.stringify({
-        title,
-        link,
+        name,
+        about,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -44,5 +51,32 @@ export default class Api {
       }
       return Promise.reject(`Error: ${res.status}`);
     });
+  }
+
+  addItem({ title, link }) {
+    return (
+      fetch(`${this.baseUrl}/cards`, {
+        headers: this.headers,
+        method: "POST",
+        body: JSON.stringify({
+          name: title,
+          link,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Error: ${res.status}`);
+        })
+        // extra .then to keep using title and not change everywhere to name
+        .then((data) => {
+          return {
+            title: data.name,
+            link: data.link,
+            ...data,
+          };
+        })
+    );
   }
 }
