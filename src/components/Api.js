@@ -21,6 +21,7 @@ export default class Api {
         // extra .then to keep using title and not change everywhere to name
         .then((data) => {
           return data.map((item) => ({
+            id: item._id,
             title: item.name,
             link: item.link,
             ...item,
@@ -60,6 +61,7 @@ export default class Api {
         // extra .then to keep using title and not change everywhere to name
         .then((data) => {
           return {
+            id: data._id,
             title: data.name,
             link: data.link,
             ...data,
@@ -68,22 +70,22 @@ export default class Api {
     );
   }
 
-  deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  likeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  likeCard(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: "PUT",
       headers: this._headers,
     }).then(this._checkResponse);
   }
 
-  unlikeCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+  unlikeCard(id) {
+    return fetch(`${this._baseUrl}/cards/likes/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._checkResponse);

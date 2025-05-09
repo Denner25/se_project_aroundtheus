@@ -82,7 +82,7 @@ function handleImageClick(cardData) {
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, cardTemplate, handleImageClick);
+  const card = new Card(cardData, cardTemplate, handleImageClick, api);
   return card.getView();
 }
 

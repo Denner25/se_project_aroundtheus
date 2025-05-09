@@ -1,15 +1,19 @@
 export default class Card {
-  constructor({ _id, title, link }, cardSelector, handleImageClick, api) {
+  constructor({ id, title, link }, cardSelector, handleImageClick, api) {
     this._title = title;
     this._link = link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    this._id = _id;
+    this._id = id;
     this._api = api;
   }
 
   getId() {
     return this._id;
+  }
+
+  getApi() {
+    return this._api;
   }
 
   _setEventListeners() {
