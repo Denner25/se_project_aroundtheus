@@ -1,20 +1,23 @@
 export default class Api {
   constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+    this._baseUrl = options.baseUrl;
+    this._headers = options.headers;
+    this._checkResponse = this._checkResponse.bind(this);
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Error: ${res.status}`);
   }
 
   getInitialCards() {
     return (
-      fetch(`${this.baseUrl}/cards`, {
-        headers: this.headers,
+      fetch(`${this._baseUrl}/cards`, {
+        headers: this._headers,
       })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Error: ${res.status}`);
-        })
+        .then(this._checkResponse)
         // extra .then to keep using title and not change everywhere to name
         .then((data) => {
           return data.map((item) => ({
@@ -27,48 +30,33 @@ export default class Api {
   }
 
   getUserInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers,
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    return fetch(`${this._baseUrl}/users/me`, {
+      headers: this._headers,
+    }).then(this._checkResponse);
   }
 
   updateProfile({ name, about }) {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: this.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about,
       }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Error: ${res.status}`);
-    });
+    }).then(this._checkResponse);
   }
 
   addItem({ title, link }) {
     return (
-      fetch(`${this.baseUrl}/cards`, {
-        headers: this.headers,
+      fetch(`${this._baseUrl}/cards`, {
+        headers: this._headers,
         method: "POST",
         body: JSON.stringify({
           name: title,
           link,
         }),
       })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Error: ${res.status}`);
-        })
+        .then(this._checkResponse)
         // extra .then to keep using title and not change everywhere to name
         .then((data) => {
           return {
@@ -78,5 +66,34 @@ export default class Api {
           };
         })
     );
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  unlikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._checkResponse);
+  }
+
+  updateAvatar(avatar) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({ avatar }),
+    }).then(this._checkResponse);
   }
 }
