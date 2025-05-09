@@ -12,9 +12,9 @@ import Api from "../components/Api.js";
 
 const profileEditButton = document.querySelector("#profile-edit-button");
 const profileEditForm = document.querySelector("#edit-profile-form");
-const profileTitle = document.querySelector(".profile__title");
+const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
-const profileTitleInput = document.querySelector("#profile-title-input");
+const profileNameInput = document.querySelector("#profile-name-input");
 const profileDescriptionInput = document.querySelector(
   "#profile-description-input"
 );
@@ -46,7 +46,7 @@ profileModal.setEventListeners();
 addCardModal.setEventListeners();
 imageModal.setEventListeners();
 
-const userInfo = new UserInfo(profileTitle, profileDescription);
+const userInfo = new UserInfo(profileName, profileDescription);
 
 const section = new Section(
   { items: initialCards, renderer: renderCard },
@@ -77,7 +77,7 @@ function loadInitialCards() {
 function handleImageClick(cardData) {
   imageModal.open({
     link: cardData.link,
-    title: cardData.title,
+    name: cardData.name,
   });
 }
 
@@ -100,9 +100,9 @@ function renderCard(cardData, listEl) {
 // }
 
 function handleProfileEditSubmit(inputValues) {
-  const { title, description } = inputValues;
+  const { name, description } = inputValues;
   api
-    .updateProfile({ name: title, about: description })
+    .updateProfile({ name: name, about: description })
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about);
       profileModal.close();
@@ -119,9 +119,9 @@ function handleProfileEditSubmit(inputValues) {
 // }
 
 function handleAddCardSubmit(inputValues) {
-  const { title, link } = inputValues;
+  const { name, link } = inputValues;
   api
-    .addItem({ title, link })
+    .addItem({ name, link })
     .then((res) => {
       section.addItem(res);
       addCardModal.close();
@@ -135,8 +135,8 @@ function handleAddCardSubmit(inputValues) {
 
 profileEditButton.addEventListener("click", () => {
   editFormValidator.resetValidation();
-  const { profileTitle, profileDescription } = userInfo.getUserInfo();
-  profileTitleInput.value = profileTitle;
+  const { profileName, profileDescription } = userInfo.getUserInfo();
+  profileNameInput.value = profileName;
   profileDescriptionInput.value = profileDescription;
   profileModal.open();
 });

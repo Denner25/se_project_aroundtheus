@@ -1,12 +1,12 @@
 export default class UserInfo {
-  constructor(profileTitle, profileDescription) {
-    this._title = profileTitle;
+  constructor(profileName, profileDescription) {
+    this._name = profileName;
     this._description = profileDescription;
   }
 
   getUserInfo() {
     const userInfo = {};
-    userInfo.profileTitle = this._title.textContent;
+    userInfo.profileName = this._name.textContent;
     userInfo.profileDescription = this._description.textContent;
     // input was replaced by empty userInfo object
     // when moving value to textContent logic
@@ -14,8 +14,8 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(title, description) {
-    this._title.textContent = title;
+  setUserInfo(name, description) {
+    this._name.textContent = name;
     this._description.textContent = description;
   }
 }

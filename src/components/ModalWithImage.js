@@ -5,12 +5,12 @@ class ModalWithImage extends Modal {
     super({ modalSelector });
   }
 
-  open({ link, title }) {
+  open({ link, name }) {
     this._modalElement.querySelector(".modal__preview-caption").textContent =
-      title;
+      name;
     const image = this._modalElement.querySelector(".modal__preview-image");
     image.src = link;
-    image.alt = `${title}`;
+    image.alt = `${name}`;
     super.open();
   }
 }
