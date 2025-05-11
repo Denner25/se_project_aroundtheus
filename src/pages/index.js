@@ -1,7 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "./index.css";
-import { initialCards, validationSettings } from "../utils/constants.js";
+import { validationSettings } from "../utils/constants.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -48,11 +48,7 @@ imageModal.setEventListeners();
 
 const userInfo = new UserInfo(profileName, profileDescription);
 
-const section = new Section(
-  { items: initialCards, renderer: renderCard },
-  cardListEl
-);
-
+const section = new Section({ items: [], renderer: renderCard }, cardListEl);
 const api = new Api({
   baseUrl: "https://around-api.en.tripleten-services.com/v1",
   headers: {
@@ -61,28 +57,37 @@ const api = new Api({
   },
 });
 
-// Functions
+api
+  .getAppInfo()
+  .then(([userData, cards]) => {
+    userInfo.setUserInfo(userData.name, userData.about);
+    section.renderItems(cards);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
-function loadInitialCards() {
-  api
-    .getInitialCards()
-    .then((cards) => {
-      section.renderItems(cards);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-}
+// Functions
 
 function handleImageClick(cardData) {
   imageModal.open({
     link: cardData.link,
     name: cardData.name,
+    id: cardData.id,
   });
 }
 
 function createCard(cardData) {
-  const card = new Card(cardData, cardTemplate, handleImageClick);
+  const card = new Card(
+    {
+      ...cardData,
+      handleDeleteClick: handleCardDelete,
+      handleLikeCard: handleLikeCard,
+    },
+    cardTemplate,
+    handleImageClick,
+    api
+  );
   return card.getView();
 }
 
@@ -91,18 +96,29 @@ function renderCard(cardData, listEl) {
   listEl.prepend(cardElement);
 }
 
-// Event handlers
+function handleCardDelete(cardElement, cardId) {
+  api
+    .deleteCard(cardId)
+    .then(() => {
+      cardElement.remove();
+    })
+    .catch((err) => console.error(err));
+}
 
-// function handleProfileEditSubmit(inputValues) {
-//   const { title, description } = inputValues;
-//   userInfo.setUserInfo(title, description);
-//   profileModal.close();
-// }
+function handleLikeCard(cardId, isLiked) {
+  if (isLiked) {
+    return api.unlikeCard(cardId);
+  } else {
+    return api.likeCard(cardId);
+  }
+}
+
+// Event handlers
 
 function handleProfileEditSubmit(inputValues) {
   const { name, description } = inputValues;
   api
-    .updateProfile({ name: name, about: description })
+    .updateProfile({ name, about: description }) // description?
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about);
       profileModal.close();
@@ -111,12 +127,6 @@ function handleProfileEditSubmit(inputValues) {
       console.error(err);
     });
 }
-
-// function handleAddCardSubmit(inputValues) {
-//   const { title, link } = inputValues;
-//   section.addItem({ title, link });
-//   addCardModal.close();
-// }
 
 function handleAddCardSubmit(inputValues) {
   const { name, link } = inputValues;
@@ -147,4 +157,4 @@ addCardButton.addEventListener("click", () => {
 });
 
 // section.renderItems();
-loadInitialCards();
+// loadInitialCards();

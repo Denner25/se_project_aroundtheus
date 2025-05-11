@@ -4,6 +4,10 @@ export default class Api {
     this.headers = options.headers;
   }
 
+  getAppInfo() {
+    return Promise.all([this.getUserInfo(), this.getInitialCards()]);
+  }
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
@@ -48,21 +52,33 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this.headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   likeCard(id) {
-    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this.headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   unlikeCard(id) {
-    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+    return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this.headers,
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   updateAvatar(avatar) {
