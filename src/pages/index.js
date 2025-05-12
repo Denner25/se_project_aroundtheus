@@ -4,6 +4,7 @@ import "./index.css";
 import { validationSettings } from "../utils/constants.js";
 import ModalWithImage from "../components/ModalWithImage.js";
 import ModalWithForm from "../components/ModalWithForm.js";
+import ModalWithConfirmation from "../components/ModalWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import Api from "../components/Api.js";
@@ -42,9 +43,15 @@ const addCardModal = new ModalWithForm("#add-card-modal", handleAddCardSubmit);
 
 const imageModal = new ModalWithImage("#preview-image-modal");
 
+const confirmationModal = new ModalWithConfirmation(
+  "#confirmation-modal",
+  handleCardDelete
+);
+
 profileModal.setEventListeners();
 addCardModal.setEventListeners();
 imageModal.setEventListeners();
+confirmationModal.setEventListeners();
 
 const userInfo = new UserInfo(profileName, profileDescription);
 
