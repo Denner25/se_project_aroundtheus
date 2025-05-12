@@ -93,7 +93,8 @@ function createCard(cardData) {
     },
     cardTemplate,
     handleImageClick,
-    api
+    api,
+    confirmationModal
   );
   return card.getView();
 }

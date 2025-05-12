@@ -3,7 +3,8 @@ export default class Card {
     { name, link, _id, handleDeleteClick, isLiked, handleLikeCard },
     cardSelector,
     handleImageClick,
-    api // Accept the api instance
+    api,
+    confirmationModal // Accept the api instance
   ) {
     this._name = name;
     this._link = link;
@@ -14,18 +15,15 @@ export default class Card {
     this._handleImageClick = handleImageClick;
     this._api = api; // Store the api instance
     this._isLiked = isLiked;
+    this._confirmationModal = confirmationModal;
   }
-
-  // getId() {
-  //   return this._id;
-  // }
 
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteClick(this._cardElement, this._id);
+      this._confirmationModal.open(this._cardElement, this._id);
     });
     this._cardImageEl.addEventListener("click", () => {
       this._handleImageClick({ name: this._name, link: this._link });

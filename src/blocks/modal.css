@@ -32,6 +32,11 @@
   position: relative;
 }
 
+.modal__container_confirmation {
+  min-height: auto;
+  padding: 36px;
+}
+
 .modal__close {
   background: transparent url(../images/close-button.svg) no-repeat;
   background-size: contain;
@@ -58,6 +63,10 @@
   max-width: 330px;
   min-height: 23px;
   margin: 0 0 54px 0;
+}
+
+.modal__heading_confirmation {
+  margin: 0;
 }
 
 .modal__form {
@@ -127,6 +136,10 @@
   line-height: 1.22;
   margin: 48px 0 0 0;
   padding: 0;
+}
+
+.modal__submit_confirmation {
+  margin-top: 38px;
 }
 
 .modal__submit_saving {
