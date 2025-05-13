@@ -48,6 +48,7 @@ export default class Api {
       }),
     }).then(this._checkResponse);
   }
+
   deleteCard(id) {
     return fetch(`${this.baseUrl}/cards/${id}`, {
       method: "DELETE",
@@ -86,6 +87,10 @@ export default class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({ avatar }),
-    }).then(this._checkResponse);
+    })
+      .then(this._checkResponse)
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }

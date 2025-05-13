@@ -37,6 +37,10 @@
   padding: 36px;
 }
 
+.modal__container_avatar {
+  min-height: 272px;
+}
+
 .modal__close {
   background: transparent url(../images/close-button.svg) no-repeat;
   background-size: contain;

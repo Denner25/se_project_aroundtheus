@@ -23,6 +23,8 @@ const cardTemplate = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
 const addCardForm = document.querySelector("#add-card-form");
+const avatarButton = document.querySelector("#avatar-update-button");
+const avatarForm = document.querySelector("#avatar-form");
 
 // Class Instances
 
@@ -31,9 +33,11 @@ const editFormValidator = new FormValidator(
   profileEditForm
 );
 const addFormValidator = new FormValidator(validationSettings, addCardForm);
+const avatarFormValidator = new FormValidator(validationSettings, avatarForm);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 const profileModal = new ModalWithForm(
   "#profile-edit-modal",
@@ -42,6 +46,8 @@ const profileModal = new ModalWithForm(
 const addCardModal = new ModalWithForm("#add-card-modal", handleAddCardSubmit);
 
 const imageModal = new ModalWithImage("#preview-image-modal");
+
+const avatarModal = new ModalWithForm("#avatar-modal", handleAvatarSubmit);
 
 const confirmationModal = new ModalWithConfirmation(
   "#confirmation-modal",
@@ -149,6 +155,19 @@ function handleAddCardSubmit(inputValues) {
     });
 }
 
+function handleAvatarSubmit(inputValues) {
+  const { link } = inputValues;
+  api
+    .updateAvatar({ link })
+    .then((res) => {
+      userInfo.setUserAvatar(link);
+      avatarModal.close();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 // Event listeners
 
 profileEditButton.addEventListener("click", () => {
@@ -162,6 +181,11 @@ profileEditButton.addEventListener("click", () => {
 addCardButton.addEventListener("click", () => {
   addFormValidator.resetValidation();
   addCardModal.open();
+});
+
+avatarButton.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  avatarModal.open();
 });
 
 // section.renderItems();

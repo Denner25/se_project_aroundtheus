@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(profileName, profileDescription) {
+  constructor(profileName, profileDescription, link) {
     this._name = profileName;
     this._description = profileDescription;
+    this._link = link;
   }
 
   getUserInfo() {
@@ -17,5 +18,9 @@ export default class UserInfo {
   setUserInfo(name, description) {
     this._name.textContent = name;
     this._description.textContent = description;
+  }
+
+  setUserAvatar(link) {
+    this._link.src = link;
   }
 }
