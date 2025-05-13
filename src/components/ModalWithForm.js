@@ -24,6 +24,7 @@ class ModalWithForm extends Modal {
     this._formModal.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputs = this._getInputValues();
+      console.log(inputs);
       this._handleFormSubmit(inputs);
       this.close();
     });

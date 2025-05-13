@@ -25,6 +25,7 @@ const addCardButton = document.querySelector("#add-card-button");
 const addCardForm = document.querySelector("#add-card-form");
 const avatarButton = document.querySelector("#avatar-update-button");
 const avatarForm = document.querySelector("#avatar-form");
+const profileAvatar = document.querySelector(".profile__picture");
 
 // Class Instances
 
@@ -58,8 +59,9 @@ profileModal.setEventListeners();
 addCardModal.setEventListeners();
 imageModal.setEventListeners();
 confirmationModal.setEventListeners();
+avatarModal.setEventListeners();
 
-const userInfo = new UserInfo(profileName, profileDescription);
+const userInfo = new UserInfo(profileName, profileDescription, profileAvatar);
 
 const section = new Section({ items: [], renderer: renderCard }, cardListEl);
 const api = new Api({
@@ -73,7 +75,7 @@ const api = new Api({
 api
   .getAppInfo()
   .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
     section.renderItems(cards);
   })
   .catch((err) => {
@@ -156,11 +158,12 @@ function handleAddCardSubmit(inputValues) {
 }
 
 function handleAvatarSubmit(inputValues) {
-  const { link } = inputValues;
+  const { avatar } = inputValues;
+  console.log("hello");
   api
-    .updateAvatar({ link })
+    .updateAvatar({ avatar: avatar })
     .then((res) => {
-      userInfo.setUserAvatar(link);
+      userInfo.setUserAvatar(res);
       avatarModal.close();
     })
     .catch((err) => {
