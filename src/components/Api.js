@@ -12,7 +12,9 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Error: ${res.status}`);
+    return Promise.reject(`Error: ${res.status}`).catch((err) => {
+      console.error(err);
+    });
   }
 
   getInitialCards() {
@@ -53,33 +55,21 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this.headers,
-    })
-      .then(this._checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._checkResponse);
   }
 
   likeCard(id) {
     return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "PUT",
       headers: this.headers,
-    })
-      .then(this._checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._checkResponse);
   }
 
   unlikeCard(id) {
     return fetch(`${this.baseUrl}/cards/${id}/likes`, {
       method: "DELETE",
       headers: this.headers,
-    })
-      .then(this._checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._checkResponse);
   }
 
   updateAvatar({ avatar }) {
@@ -87,10 +77,6 @@ export default class Api {
       method: "PATCH",
       headers: this.headers,
       body: JSON.stringify({ avatar }),
-    })
-      .then(this._checkResponse)
-      .catch((err) => {
-        console.error(err);
-      });
+    }).then(this._checkResponse);
   }
 }

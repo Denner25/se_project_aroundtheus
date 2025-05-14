@@ -4,7 +4,7 @@ export default class Card {
     cardSelector,
     handleImageClick,
     api,
-    confirmationModal // Accept the api instance
+    confirmationModal
   ) {
     this._name = name;
     this._link = link;
@@ -13,7 +13,7 @@ export default class Card {
     this._handleLikeCard = handleLikeCard;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-    this._api = api; // Store the api instance
+    this._api = api;
     this._isLiked = isLiked;
     this._confirmationModal = confirmationModal;
   }
@@ -33,7 +33,7 @@ export default class Card {
   _handleLikeIcon() {
     this._handleLikeCard(this._id, this._isLiked)
       .then(() => {
-        this._isLiked = !this._isLiked; // Toggle the like state
+        this._isLiked = !this._isLiked;
         this._likeButton.classList.toggle("card__like-button_active");
       })
       .catch((err) => {

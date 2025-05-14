@@ -9,11 +9,6 @@ export default class UserInfo {
     const userInfo = {};
     userInfo.profileName = this._name.textContent;
     userInfo.profileDescription = this._description.textContent;
-    // userInfo.avatar = this._avatar;
-    // input was replaced by empty userInfo object
-    // when moving value to textContent logic
-    // as inputs are handled by form class
-
     return userInfo;
   }
 

@@ -67,7 +67,8 @@
   line-height: 1.21;
   color: black;
   max-width: 330px;
-  min-height: 23px;
+  max-height: 23px;
+  width: 100%;
   margin: 0 0 54px 0;
 }
 

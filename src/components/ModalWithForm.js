@@ -15,9 +15,6 @@ class ModalWithForm extends Modal {
   _getInputValues() {
     const inputs = {};
     this._inputs.forEach((input) => {
-      //the brackets are just used to create a new
-      //key value pair inside the empty object
-      //nothing connected to arrays like i initially thought
       inputs[input.name] = input.value;
     });
     return inputs;

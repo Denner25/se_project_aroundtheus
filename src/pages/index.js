@@ -12,7 +12,6 @@ import Api from "../components/Api.js";
 // Elements
 
 const profileEditButton = document.querySelector("#profile-edit-button");
-const profileEditForm = document.querySelector("#edit-profile-form");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 const profileNameInput = document.querySelector("#profile-name-input");
@@ -22,23 +21,28 @@ const profileDescriptionInput = document.querySelector(
 const cardTemplate = document.querySelector("#card-template");
 const cardListEl = document.querySelector(".card__list");
 const addCardButton = document.querySelector("#add-card-button");
-const addCardForm = document.querySelector("#add-card-form");
 const avatarButton = document.querySelector("#avatar-update-button");
-const avatarForm = document.querySelector("#avatar-form");
 const profileAvatar = document.querySelector(".profile__picture");
 
+// Validators
+
+const formValidators = {};
+
+const enableValidation = (validationSettings) => {
+  const formList = Array.from(
+    document.querySelectorAll(validationSettings.formSelector)
+  );
+  formList.forEach((formElement) => {
+    const validator = new FormValidator(validationSettings, formElement);
+    const formId = formElement.id;
+    formValidators[formId] = validator;
+    validator.enableValidation();
+  });
+};
+
+enableValidation(validationSettings);
+
 // Class Instances
-
-const editFormValidator = new FormValidator(
-  validationSettings,
-  profileEditForm
-);
-const addFormValidator = new FormValidator(validationSettings, addCardForm);
-const avatarFormValidator = new FormValidator(validationSettings, avatarForm);
-
-editFormValidator.enableValidation();
-addFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
 
 const profileModal = new ModalWithForm(
   "#profile-edit-modal",
@@ -174,7 +178,7 @@ function handleAvatarSubmit(inputValues) {
 // Event listeners
 
 profileEditButton.addEventListener("click", () => {
-  editFormValidator.resetValidation();
+  formValidators["edit-profile-form"].resetValidation();
   const { profileName, profileDescription } = userInfo.getUserInfo();
   profileNameInput.value = profileName;
   profileDescriptionInput.value = profileDescription;
@@ -182,14 +186,11 @@ profileEditButton.addEventListener("click", () => {
 });
 
 addCardButton.addEventListener("click", () => {
-  addFormValidator.resetValidation();
+  formValidators["add-card-form"].resetValidation();
   addCardModal.open();
 });
 
 avatarButton.addEventListener("click", () => {
-  avatarFormValidator.resetValidation();
+  formValidators["avatar-form"].resetValidation();
   avatarModal.open();
 });
-
-// section.renderItems();
-// loadInitialCards();

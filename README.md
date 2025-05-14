@@ -1,22 +1,22 @@
 # Around The U.S
 
-This is the eighth project of the Software Engineering program at TripleTen. It was created using HTML, CSS, and JavaScript based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add more text and upload more pictures to their gallery. Section, Modal, ModalWithForm, ModalWithImage and UserInfo classes were implemented using advanced object-oriented programming concepts learned in this sprint.
+This is the ninth project of the Software Engineering program at TripleTen. It was created using JavaScript, HTML and CSS based on the Figma design. It's a responsive interface that adapts to 3 different screen sizes and allows users to add a profile title, description, upload pictures to their gallery as well as like and describe them. The API class was added lastly, using asynchronous Javascript and API concepts learned in this sprint.
 
 ## Project features
 
+- JavaScript
+- Object Oriented Programming
 - Responsive Design
 - Grid Layout
 - Media Queries
 - Semantic HTML5
 - Flexbox
 - Flat BEM file structure
-- JavaScript
-- Object Oriented Programming
 
 ## Plan on improving the project
 
+- To add likes counter.
 - To add smooth transitions to the add button's border size at the different breakpoints using the transform scale property.
-- To add more interactivity and expand user features upon acquiring the new JavaScript skills from the next sprint.
 
 ## GitHub Pages
 
