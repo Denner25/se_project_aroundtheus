@@ -75,7 +75,8 @@ const api = new Api({
 api
   .getAppInfo()
   .then(([userData, cards]) => {
-    userInfo.setUserInfo(userData.name, userData.about, userData.avatar);
+    userInfo.setUserInfo(userData.name, userData.about);
+    userInfo.setUserAvatar(userData.avatar);
     section.renderItems(cards);
   })
   .catch((err) => {
@@ -132,9 +133,9 @@ function handleLikeCard(cardId, isLiked) {
 // Event handlers
 
 function handleProfileEditSubmit(inputValues) {
-  const { name, description } = inputValues;
+  const { name, about } = inputValues;
   api
-    .updateProfile({ name, about: description }) // description?
+    .updateProfile({ name, about }) // description?
     .then((res) => {
       userInfo.setUserInfo(res.name, res.about);
       profileModal.close();
@@ -160,9 +161,9 @@ function handleAddCardSubmit(inputValues) {
 function handleAvatarSubmit(inputValues) {
   const { avatar } = inputValues;
   api
-    .updateAvatar({ avatarURL: avatar })
+    .updateAvatar({ avatar })
     .then((res) => {
-      userInfo.setUserAvatar(res);
+      userInfo.setUserAvatar(res.avatar);
       avatarModal.close();
     })
     .catch((err) => {

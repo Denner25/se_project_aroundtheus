@@ -9,7 +9,7 @@ export default class UserInfo {
     const userInfo = {};
     userInfo.profileName = this._name.textContent;
     userInfo.profileDescription = this._description.textContent;
-    // userInfo.avatar = this._avatar.src;
+    // userInfo.avatar = this._avatar;
     // input was replaced by empty userInfo object
     // when moving value to textContent logic
     // as inputs are handled by form class
@@ -17,10 +17,9 @@ export default class UserInfo {
     return userInfo;
   }
 
-  setUserInfo(name, description, avatar) {
+  setUserInfo(name, about) {
     this._name.textContent = name;
-    this._description.textContent = description;
-    this._avatar.src = avatar;
+    this._description.textContent = about;
   }
 
   setUserAvatar(avatar) {
