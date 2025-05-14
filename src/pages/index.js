@@ -159,9 +159,8 @@ function handleAddCardSubmit(inputValues) {
 
 function handleAvatarSubmit(inputValues) {
   const { avatar } = inputValues;
-  console.log("hello");
   api
-    .updateAvatar({ avatar: avatar })
+    .updateAvatar({ avatarURL: avatar })
     .then((res) => {
       userInfo.setUserAvatar(res);
       avatarModal.close();

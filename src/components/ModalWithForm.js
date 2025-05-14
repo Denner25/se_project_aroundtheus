@@ -3,9 +3,13 @@ import Modal from "./Modal.js";
 class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super({ modalSelector });
+    this._submitButton = this._modalElement.querySelector(".modal__submit");
     this._formModal = this._modalElement.querySelector(".modal__form");
     this._inputs = this._formModal.querySelectorAll(".modal__input");
     this._handleFormSubmit = handleFormSubmit;
+    this._handleSavingModifier = () => {
+      this._submitButton.classList.add("modal__submit_saving");
+    };
   }
 
   _getInputValues() {
@@ -24,8 +28,8 @@ class ModalWithForm extends Modal {
     this._formModal.addEventListener("submit", (e) => {
       e.preventDefault();
       const inputs = this._getInputValues();
-      console.log(inputs);
       this._handleFormSubmit(inputs);
+      this._handleSavingModifier();
       this.close();
     });
   }

@@ -39,6 +39,8 @@
 
 .modal__container_avatar {
   min-height: 272px;
+  max-width: 430px;
+  width: 100%;
 }
 
 .modal__close {
@@ -98,6 +100,10 @@
   padding: 0;
 }
 
+.modal__input_avatar {
+  margin: 0;
+}
+
 .modal__label:first-of-type {
   margin-bottom: 30px;
 }
@@ -147,7 +153,17 @@
 }
 
 .modal__submit_saving {
+  position: relative;
+  color: transparent;
+}
+
+.modal__submit_saving::after {
   content: "Saving...";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
 .modal__submit:hover {
