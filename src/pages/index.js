@@ -122,6 +122,7 @@ function handleCardDelete(cardElement, cardId) {
     .deleteCard(cardId)
     .then(() => {
       cardElement.remove();
+      confirmationModal.close();
     })
     .catch((err) => console.error(err));
 }
@@ -146,6 +147,9 @@ function handleProfileEditSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      profileModal.resetSavingModifier();
     });
 }
 
@@ -159,6 +163,9 @@ function handleAddCardSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      addCardModal.resetSavingModifier();
     });
 }
 
@@ -172,6 +179,9 @@ function handleAvatarSubmit(inputValues) {
     })
     .catch((err) => {
       console.error(err);
+    })
+    .finally(() => {
+      avatarModal.resetSavingModifier();
     });
 }
 

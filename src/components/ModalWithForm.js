@@ -27,8 +27,11 @@ class ModalWithForm extends Modal {
       const inputs = this._getInputValues();
       this._handleFormSubmit(inputs);
       this._handleSavingModifier();
-      this.close();
     });
+  }
+
+  resetSavingModifier() {
+    this._submitButton.classList.remove("modal__submit_saving");
   }
 
   close() {

@@ -12,7 +12,6 @@ class ModalWithConfirmation extends Modal {
     this._submitButton.addEventListener("click", (event) => {
       event.preventDefault();
       this._handleSubmit(this._cardElement, this._cardId);
-      this.close();
     });
   }
 
@@ -20,10 +19,6 @@ class ModalWithConfirmation extends Modal {
     this._cardElement = cardElement;
     this._cardId = cardId;
     super.open();
-  }
-
-  close() {
-    super.close();
   }
 }
 

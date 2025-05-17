@@ -82,6 +82,7 @@
   font-family: "Inter";
   font-size: 14px;
   max-width: 358px;
+  gap: 30px;
 }
 
 .modal__label {
@@ -103,10 +104,6 @@
 
 .modal__input_avatar {
   margin: 0;
-}
-
-.modal__label:first-of-type {
-  margin-bottom: 30px;
 }
 
 .modal__input::placeholder {
@@ -145,7 +142,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  margin: 48px 0 0 0;
+  margin: 18px 0 0 0;
   padding: 0;
 }
 

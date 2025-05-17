@@ -152,15 +152,17 @@
         <button class="modal__close"></button>
         <p class="modal__heading">Change profile picture</p>
         <form class="modal__form" id="avatar-form">
-          <input
-            type="url"
-            name="avatar"
-            class="modal__input"
-            id="avatar-input"
-            placeholder="Image URL"
-            required
-          />
-          <span class="modal__error" id="avatar-input-error"></span>
+          <label class="modal__label">
+            <input
+              type="url"
+              name="avatar"
+              class="modal__input"
+              id="avatar-input"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="avatar-input-error"></span>
+          </label>
           <button class="modal__submit">Save</button>
         </form>
       </div>
