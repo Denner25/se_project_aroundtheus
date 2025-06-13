@@ -3,17 +3,18 @@ import Modal from "./Modal.js";
 class ModalWithForm extends Modal {
   constructor(modalSelector, handleFormSubmit) {
     super({ modalSelector });
+    this._submitButton = this._modalElement.querySelector(".modal__submit");
     this._formModal = this._modalElement.querySelector(".modal__form");
     this._inputs = this._formModal.querySelectorAll(".modal__input");
     this._handleFormSubmit = handleFormSubmit;
+    this._handleSavingModifier = () => {
+      this._submitButton.classList.add("modal__submit_saving");
+    };
   }
 
   _getInputValues() {
     const inputs = {};
     this._inputs.forEach((input) => {
-      //the brackets are just used to create a new
-      //key value pair inside the empty object
-      //nothing connected to arrays like i initially thought
       inputs[input.name] = input.value;
     });
     return inputs;
@@ -25,8 +26,12 @@ class ModalWithForm extends Modal {
       e.preventDefault();
       const inputs = this._getInputValues();
       this._handleFormSubmit(inputs);
-      this.close();
+      this._handleSavingModifier();
     });
+  }
+
+  resetSavingModifier() {
+    this._submitButton.classList.remove("modal__submit_saving");
   }
 
   close() {

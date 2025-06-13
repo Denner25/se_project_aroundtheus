@@ -66,3 +66,69 @@ cd//c/Users/Denner Tallyson/Documents/WebDev/2024/TripleTen
 cd[200~/c/Users/Denner Tallyson/Documents/WebDev/2024/TripleTen/Sprint 7/se_project_aroundtheus
 cd/c/Users/Denner Tallyson/Documents/WebDev/2024/TripleTen
 cd/TripleTen
+pwd
+cd src/components
+touch ModalWithForm.js && Api.js
+touch ModalWithForm.js && touch Api.js
+touch ModalWithConfirmation.js
+cd~
+cd ~
+git branch
+git switch progress
+git switch main
+git switch progress
+git branch
+git commit -m "test branch pushing"
+git push -u origin progress
+git branch main
+git switch main
+git switch main
+git stash
+git switch main
+git branch -D progress
+git branch
+git branch -D sprint5
+git branch -D stage3
+git stash list
+git stash clear
+git stash list
+git checkout -b project-9~
+git checkout -b project-9
+cd ../
+cd ./
+cd ../
+cd "Sprint 8"
+list
+cd se_project_aroundtheus
+git run dev
+npm run dev
+cd ~
+npm run dev
+git add -A
+git commit -m "add new modals to html and css saving modifier"
+git push
+git push -u origin project-9
+cd ~
+npm run dev
+npm run dev
+git add -A
+git commit -m "begin work on API class"
+git push
+npm run dev
+git add -A
+git commit -m" implement more API methods"
+git push
+npm run dev
+git checkout -b project-9b
+git add -A
+git commit -m "implement more api methods - extra branch for reviwer help"
+git push -u origin project-9b
+npm run dev
+git switch project-9
+npm run dev
+git switch project-9
+git add -A
+git commit -m "further attempts"
+git push
+git switch project-9
+npm run dev

@@ -1,21 +1,23 @@
 export default class UserInfo {
-  constructor(profileTitle, profileDescription) {
-    this._title = profileTitle;
+  constructor(profileName, profileDescription, avatar) {
+    this._name = profileName;
     this._description = profileDescription;
+    this._avatar = avatar;
   }
 
   getUserInfo() {
     const userInfo = {};
-    userInfo.profileTitle = this._title.textContent;
+    userInfo.profileName = this._name.textContent;
     userInfo.profileDescription = this._description.textContent;
-    // input was replaced by empty userInfo object
-    // when moving value to textContent logic
-    // as inputs are handled by form class
     return userInfo;
   }
 
-  setUserInfo(title, description) {
-    this._title.textContent = title;
-    this._description.textContent = description;
+  setUserInfo(name, about) {
+    this._name.textContent = name;
+    this._description.textContent = about;
+  }
+
+  setUserAvatar(avatar) {
+    this._avatar.src = avatar;
   }
 }

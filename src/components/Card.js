@@ -1,9 +1,21 @@
 export default class Card {
-  constructor({ title, link }, cardSelector, handleImageClick) {
-    this._title = title;
+  constructor(
+    { name, link, _id, handleDeleteClick, isLiked, handleLikeCard },
+    cardSelector,
+    handleImageClick,
+    api,
+    confirmationModal
+  ) {
+    this._name = name;
     this._link = link;
+    this._id = _id;
+    this._handleDeleteClick = handleDeleteClick;
+    this._handleLikeCard = handleLikeCard;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
+    this._api = api;
+    this._isLiked = isLiked;
+    this._confirmationModal = confirmationModal;
   }
 
   _setEventListeners() {
@@ -11,15 +23,22 @@ export default class Card {
       this._handleLikeIcon();
     });
     this._deleteButton.addEventListener("click", () => {
-      this._handleDeleteCard();
+      this._confirmationModal.open(this._cardElement, this._id);
     });
     this._cardImageEl.addEventListener("click", () => {
-      this._handleImageClick({ title: this._title, link: this._link });
+      this._handleImageClick({ name: this._name, link: this._link });
     });
   }
 
   _handleLikeIcon() {
-    this._likeButton.classList.toggle("card__like-button_active");
+    this._handleLikeCard(this._id, this._isLiked)
+      .then(() => {
+        this._isLiked = !this._isLiked;
+        this._likeButton.classList.toggle("card__like-button_active");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 
   _handleDeleteCard() {
@@ -35,7 +54,7 @@ export default class Card {
   getView() {
     this._cardElement = this._getTemplate();
     this._cardImageEl = this._cardElement.querySelector(".card__image");
-    this._cardTitleEl = this._cardElement.querySelector(
+    this._cardNameEl = this._cardElement.querySelector(
       ".card__description-text"
     );
     this._likeButton = this._cardElement.querySelector(".card__like-button");
@@ -43,8 +62,11 @@ export default class Card {
       ".card__delete-button"
     );
     this._cardImageEl.src = this._link;
-    this._cardImageEl.alt = this._title;
-    this._cardTitleEl.textContent = this._title;
+    this._cardImageEl.alt = this._name;
+    this._cardNameEl.textContent = this._name;
+    if (this._isLiked) {
+      this._likeButton.classList.add("card__like-button_active");
+    }
     this._setEventListeners();
     return this._cardElement;
   }

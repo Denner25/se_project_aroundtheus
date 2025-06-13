@@ -10,24 +10,52 @@
   background-color: black;
   color: white;
   border-radius: 50%;
+  max-width: 120px;
+  max-height: 120px;
+}
+
+.profile__avatar-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.profile__avatar-container:hover {
+  opacity: 1;
+}
+
+.profile__avatar-update-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8) url(../images/avatar-update-icon.svg) center
+    no-repeat;
+  border: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.profile__avatar-update-button:hover {
+  opacity: 1;
 }
 
 .profile__info {
   display: grid;
   grid-template-areas:
-    "title button"
+    "name button"
     "description description";
   grid-template-columns: minmax(auto, 373px) auto;
   padding: 0 18px 0 30px;
   align-items: center;
 }
 
-.profile__title {
+.profile__name {
   font-family: "Inter", Arial, sans-serif;
   font-weight: 500;
   font-size: 42px;
   line-height: 1.14;
-  grid-area: title;
+  grid-area: name;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -89,7 +117,7 @@
     max-width: 282px;
   }
 
-  .profile__title {
+  .profile__name {
     font-size: 22px;
     line-height: 1.2;
     max-width: 196px;
@@ -119,7 +147,7 @@
 }
 
 @media screen and (min-width: 621px) and (max-width: 770px) {
-  .profile__title {
+  .profile__name {
     font-size: 36px;
     max-width: 320px;
     text-align: center;

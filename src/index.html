@@ -22,13 +22,15 @@
     <div class="page__content">
       <main class="content">
         <section class="profile page__section">
-          <img
-            src="<%= require('./images/jacques-cousteau.jpg')%>"
-            alt="Profile picture"
-            class="profile__picture"
-          />
+          <div class="profile__avatar-container">
+            <img src="" alt="Profile picture" class="profile__picture" />
+            <div
+              class="profile__avatar-update-button"
+              id="avatar-update-button"
+            ></div>
+          </div>
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__name">Jacques Cousteau</h1>
             <button
               type="button"
               class="profile__edit-button"
@@ -54,26 +56,26 @@
     <!-- Edit modal -->
     <div class="modal" id="profile-edit-modal">
       <div class="modal__container">
-        <button class="modal__close" id="profile-edit-close-button"></button>
+        <button class="modal__close"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form" id="edit-profile-form" novalidate>
           <label class="modal__label">
             <input
               type="text"
-              name="title"
+              name="name"
               class="modal__input"
-              id="profile-title-input"
-              placeholder="Title"
+              id="profile-name-input"
+              placeholder="Name"
               required
               maxlength="40"
               minlength="2"
             />
-            <span class="modal__error" id="profile-title-input-error"></span>
+            <span class="modal__error" id="profile-name-input-error"></span>
           </label>
           <label class="modal__label">
             <input
               type="text"
-              name="description"
+              name="about"
               class="modal__input"
               id="profile-description-input"
               placeholder="Description"
@@ -94,21 +96,21 @@
     <!-- Add card modal -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
-        <button class="modal__close" id="add-card-close-button"></button>
+        <button class="modal__close"></button>
         <p class="modal__heading">New place</p>
         <form class="modal__form" id="add-card-form">
           <label class="modal__label">
             <input
               type="text"
-              name="title"
+              name="name"
               class="modal__input"
-              id="card-title-input"
-              placeholder="Title"
+              id="card-name-input"
+              placeholder="Name"
               required
               minlength="1"
               maxlength="30"
             />
-            <span class="modal__error" id="card-title-input-error"></span>
+            <span class="modal__error" id="card-name-input-error"></span>
           </label>
           <label class="modal__label">
             <input
@@ -132,6 +134,37 @@
         <button class="modal__close"></button>
         <img src="" alt="" class="modal__preview-image" />
         <p class="modal__preview-caption"></p>
+      </div>
+    </div>
+
+    <!-- Confirmation modal -->
+    <div class="modal" id="confirmation-modal">
+      <div class="modal__container modal__container_confirmation">
+        <button class="modal__close"></button>
+        <p class="modal__heading modal__heading_confirmation">Are you sure?</p>
+        <button class="modal__submit modal__submit_confirmation">Yes</button>
+      </div>
+    </div>
+
+    <!-- Change profile picture modal -->
+    <div class="modal" id="avatar-modal">
+      <div class="modal__container modal__container_avatar">
+        <button class="modal__close"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="avatar-form">
+          <label class="modal__label">
+            <input
+              type="url"
+              name="avatar"
+              class="modal__input"
+              id="avatar-input"
+              placeholder="Image URL"
+              required
+            />
+            <span class="modal__error" id="avatar-input-error"></span>
+          </label>
+          <button class="modal__submit">Save</button>
+        </form>
       </div>
     </div>
 

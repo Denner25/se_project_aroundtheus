@@ -32,6 +32,17 @@
   position: relative;
 }
 
+.modal__container_confirmation {
+  min-height: auto;
+  padding: 36px;
+}
+
+.modal__container_avatar {
+  min-height: 272px;
+  max-width: 430px;
+  width: 100%;
+}
+
 .modal__close {
   background: transparent url(../images/close-button.svg) no-repeat;
   background-size: contain;
@@ -56,8 +67,13 @@
   line-height: 1.21;
   color: black;
   max-width: 330px;
-  min-height: 23px;
+  max-height: 23px;
+  width: 100%;
   margin: 0 0 54px 0;
+}
+
+.modal__heading_confirmation {
+  margin: 0;
 }
 
 .modal__form {
@@ -66,6 +82,7 @@
   font-family: "Inter";
   font-size: 14px;
   max-width: 358px;
+  gap: 30px;
 }
 
 .modal__label {
@@ -85,8 +102,8 @@
   padding: 0;
 }
 
-.modal__label:first-of-type {
-  margin-bottom: 30px;
+.modal__input_avatar {
+  margin: 0;
 }
 
 .modal__input::placeholder {
@@ -125,8 +142,26 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
-  margin: 48px 0 0 0;
+  margin: 18px 0 0 0;
   padding: 0;
+}
+
+.modal__submit_confirmation {
+  margin-top: 38px;
+}
+
+.modal__submit_saving {
+  position: relative;
+  color: transparent;
+}
+
+.modal__submit_saving::after {
+  content: "Saving...";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
 .modal__submit:hover {
